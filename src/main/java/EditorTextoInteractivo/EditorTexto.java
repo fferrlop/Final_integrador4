@@ -3,9 +3,7 @@ package EditorTextoInteractivo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -15,6 +13,7 @@ public class EditorTexto extends JFrame {
     private JButton saveButton;
     private JList<String> documentList;
     private DefaultListModel<String> listModel;
+    private static final String FILE_LIST_NAME = "fileList.txt";
 
     public EditorTexto() {
         setLayout(new BorderLayout());
@@ -28,18 +27,15 @@ public class EditorTexto extends JFrame {
         add(saveButton, BorderLayout.SOUTH);
         add(new JScrollPane(documentList), BorderLayout.EAST);
 
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveDocument();
-            }
-        });
+        saveButton.addActionListener(e -> saveDocument());
 
         documentList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 loadDocument(documentList.getSelectedValue());
             }
         });
+
+        loadFileList();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -52,6 +48,7 @@ public class EditorTexto extends JFrame {
             try (FileWriter writer = new FileWriter(filename)) {
                 writer.write(textArea.getText());
                 listModel.addElement(filename);
+                saveFileList();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,6 +63,30 @@ public class EditorTexto extends JFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void loadFileList() {
+        File fileList = new File(FILE_LIST_NAME);
+        if (fileList.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileList))) {
+                String filename;
+                while ((filename = reader.readLine()) != null) {
+                    listModel.addElement(filename);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void saveFileList() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_LIST_NAME))) {
+            for (int i = 0; i < listModel.size(); i++) {
+                writer.println(listModel.getElementAt(i));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
