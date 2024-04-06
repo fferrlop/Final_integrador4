@@ -23,9 +23,13 @@ public class EditorTexto extends JFrame {
         listModel = new DefaultListModel<>();
         documentList = new JList<>(listModel);
 
-        add(new JScrollPane(textArea), BorderLayout.CENTER);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                new JScrollPane(documentList), new JScrollPane(textArea));
+        splitPane.setOneTouchExpandable(true);
+        splitPane.setDividerLocation(150);
+
+        add(splitPane, BorderLayout.CENTER);
         add(saveButton, BorderLayout.SOUTH);
-        add(new JScrollPane(documentList), BorderLayout.EAST);
 
         saveButton.addActionListener(e -> saveDocument());
 
