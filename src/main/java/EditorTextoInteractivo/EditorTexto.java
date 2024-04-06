@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class EditorTexto extends JFrame {
+
+    //Interfaz del usuario
     private JTextArea textArea;
     private JButton saveButton;
     private JList<String> documentList;
@@ -40,7 +42,7 @@ public class EditorTexto extends JFrame {
         });
 
         loadFileList();
-
+//tamaño de la pestaña
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setVisible(true);
