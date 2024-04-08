@@ -1,11 +1,9 @@
 package org.example;
 
-import EditorTextoInteractivo.EditorTexto;
-
-import javax.swing.*;
+import InterfazDeUsuario.InterfazUsuario;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(EditorTexto::new);
+        new InterfazUsuario();
     }
 }
