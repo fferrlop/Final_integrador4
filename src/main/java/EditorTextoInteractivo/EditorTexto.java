@@ -1,5 +1,6 @@
 package EditorTextoInteractivo;
 
+import ComparadorContadorDeContenido.ComparadorDeContenido;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -12,8 +13,9 @@ public class EditorTexto extends JPanel {
     private JButton openButton;
     private List<String> savedFiles;
     private static final String SAVED_FILES_NAME = "savedFiles.txt";
+    private ComparadorDeContenido comparadorDeContenido;
 
-    public EditorTexto() {
+    public EditorTexto(ComparadorDeContenido comparadorDeContenido) {
         setLayout(new BorderLayout());
 
         textArea = new JTextArea();
@@ -28,6 +30,7 @@ public class EditorTexto extends JPanel {
         buttonPanel.add(openButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
+        this.comparadorDeContenido = comparadorDeContenido;
         savedFiles = new ArrayList<>();
         loadSavedFiles();
 
@@ -53,6 +56,7 @@ public class EditorTexto extends JPanel {
                 writer.write(textArea.getText());
                 savedFiles.add(newFileName);
                 updateSavedFiles();
+                comparadorDeContenido.updateSavedFiles();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -31,8 +31,8 @@ public class InterfazUsuario extends JFrame {
         buttonPanel.add(openEditorButton);
         buttonPanel.add(openComparatorButton);
 
-        editorTexto = new EditorTexto();
         comparadorDeContenido = new ComparadorDeContenido();
+        editorTexto = new EditorTexto(comparadorDeContenido);
 
         cardPanel.add(new JPanel(), "EMPTY");
         cardPanel.add(editorTexto, "EDITOR");
