@@ -9,6 +9,7 @@ import BusquedaPalabrasYContactos.DatosContactos;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class InterfazUsuario extends JFrame {
 
@@ -23,6 +24,7 @@ public class InterfazUsuario extends JFrame {
     private ComparadorDeContenido comparadorDeContenido;
     private BuscadorPalabras busquedaPalabras;
     private Contactos contactos;
+    private JLabel mousePositionLabel;
 
     public InterfazUsuario() {
         setLayout(new BorderLayout());
@@ -65,6 +67,15 @@ public class InterfazUsuario extends JFrame {
             String archivo = (String) JOptionPane.showInputDialog(null, "Selecciona un archivo:", "Archivo", JOptionPane.QUESTION_MESSAGE, null, editorTexto.getSavedFiles(), editorTexto.getSavedFiles()[0]);
             int count = busquedaPalabras.buscarPalabraEnArchivo(palabra, archivo);
             JOptionPane.showMessageDialog(null, "La palabra '" + palabra + "' aparece " + count + " veces en el archivo '" + archivo + "'.");
+        });
+
+        // Seguimiento del Ratón
+        mousePositionLabel = new JLabel();
+        add(mousePositionLabel, BorderLayout.SOUTH);
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                mousePositionLabel.setText("Mouse Position: " + e.getX() + ", " + e.getY());
+            }
         });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

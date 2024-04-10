@@ -74,17 +74,25 @@ public class EditorTexto extends JPanel {
         }
     }
 
-    private void openFile() {
-        Object[] options = savedFiles.toArray();
-        int selection = JOptionPane.showOptionDialog(null, "Select a file:", "File Selection",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        if (selection != JOptionPane.CLOSED_OPTION) {
-            String filePath = (String) options[selection];
-            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-                textArea.read(reader, null);
-            } catch (IOException e) {
-                e.printStackTrace();
+    public void openFile() {
+        if (!savedFiles.isEmpty()) {
+            Object[] options = savedFiles.toArray();
+            String selectedFile = (String) JOptionPane.showInputDialog(null, "Select a file:", "File Selection",
+                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (selectedFile != null) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
+                    JFrame newWindow = new JFrame(selectedFile);
+                    JTextArea newTextArea = new JTextArea();
+                    newTextArea.read(reader, null);
+                    newWindow.add(new JScrollPane(newTextArea));
+                    newWindow.setSize(400, 300);
+                    newWindow.setVisible(true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "No saved files to open.");
         }
     }
 
