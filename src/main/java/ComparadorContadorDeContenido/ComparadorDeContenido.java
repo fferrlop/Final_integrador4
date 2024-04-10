@@ -39,7 +39,7 @@ public class ComparadorDeContenido extends JPanel {
         buttonPanel.add(selectFile2Button);
         buttonPanel.add(compareButton);
         buttonPanel.add(countWordsButton); // Add the new button to the button panel
-        add(buttonPanel, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.NORTH);
 
         savedFiles = new ArrayList<>();
         loadSavedFiles();

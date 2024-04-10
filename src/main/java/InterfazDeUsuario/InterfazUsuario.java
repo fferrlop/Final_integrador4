@@ -54,8 +54,19 @@ public class InterfazUsuario extends JFrame {
         cardPanel.add(editorTexto, "EDITOR");
         cardPanel.add(comparadorDeContenido, "COMPARATOR");
 
+
+        JPanel largePanel = new JPanel();
+        largePanel.setPreferredSize(new Dimension(1000, 2000));
+        cardPanel.add(largePanel, "LARGE");
+
+        JScrollPane scrollPane = new JScrollPane(cardPanel);
+
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
         add(buttonPanel, BorderLayout.NORTH);
-        add(cardPanel, BorderLayout.CENTER);
+        // Agregar solo el JScrollPane al BorderLayout.CENTER
+        add(scrollPane, BorderLayout.CENTER);
 
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "EMPTY"));
         openEditorButton.addActionListener(e -> cardLayout.show(cardPanel, "EDITOR"));
@@ -79,7 +90,7 @@ public class InterfazUsuario extends JFrame {
         });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(800, 600 );
         setVisible(true);
     }
 

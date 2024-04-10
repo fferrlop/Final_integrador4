@@ -28,7 +28,7 @@ public class EditorTexto extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
         buttonPanel.add(openButton);
-        add(buttonPanel, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.NORTH);
 
         this.comparadorDeContenido = comparadorDeContenido;
         savedFiles = new ArrayList<>();
