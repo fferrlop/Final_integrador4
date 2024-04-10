@@ -11,7 +11,7 @@ public class DatosContactos {
         this.numeroTelefono = numeroTelefono;
     }
 
-    // Getters and setters
+
     public String getNombre() {
         return nombre;
     }

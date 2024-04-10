@@ -84,7 +84,7 @@ public class InterfazUsuario extends JFrame {
             JOptionPane.showMessageDialog(null, "La palabra '" + palabra + "' aparece " + count + " veces en el archivo '" + archivo + "'.");
         });
 
-        // Seguimiento del Ratón
+
         mousePositionLabel = new JLabel();
         add(mousePositionLabel, BorderLayout.SOUTH);
         drawButton.addActionListener(e -> new DiseñoGrafico());
@@ -112,7 +112,7 @@ public class InterfazUsuario extends JFrame {
         dialogoContactos.add(mostrarContactosButton);
 
         dialogoContactos.pack();
-        dialogoContactos.setLocationRelativeTo(this); // Asegura que el diálogo se abre en el centro de la ventana principal
+        dialogoContactos.setLocationRelativeTo(this);
         dialogoContactos.setVisible(true);
     }
 

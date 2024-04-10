@@ -16,7 +16,7 @@ public class ComparadorDeContenido extends JPanel {
     private JButton compareButton;
     private JButton selectFile1Button;
     private JButton selectFile2Button;
-    private JButton countWordsButton; // New button
+    private JButton countWordsButton;
     private String filename1;
     private String filename2;
     private List<String> savedFiles;
@@ -32,13 +32,13 @@ public class ComparadorDeContenido extends JPanel {
         compareButton = new JButton("Compare Files");
         selectFile1Button = new JButton("Select File 1");
         selectFile2Button = new JButton("Select File 2");
-        countWordsButton = new JButton("Count Words"); // Initialize the new button
+        countWordsButton = new JButton("Count Words");
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(selectFile1Button);
         buttonPanel.add(selectFile2Button);
         buttonPanel.add(compareButton);
-        buttonPanel.add(countWordsButton); // Add the new button to the button panel
+        buttonPanel.add(countWordsButton);
         add(buttonPanel, BorderLayout.NORTH);
 
         savedFiles = new ArrayList<>();
