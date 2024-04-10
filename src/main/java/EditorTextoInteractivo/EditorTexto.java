@@ -87,4 +87,8 @@ public class EditorTexto extends JPanel {
             }
         }
     }
+
+    public String[] getSavedFiles() {
+        return savedFiles.toArray(new String[0]);
+    }
 }
