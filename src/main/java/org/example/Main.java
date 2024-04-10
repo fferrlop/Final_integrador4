@@ -1,10 +1,9 @@
 package org.example;
 
-import InterfazDeUsuario.InterfazUsuario;
-import InterfazGraficaAvanzada.*;
+import VerificaciónYDiseño.VerificacionCorreo;
 
 public class Main {
     public static void main(String[] args) {
-        new VentanaPrincipal();
+        new VerificacionCorreo();
     }
 }

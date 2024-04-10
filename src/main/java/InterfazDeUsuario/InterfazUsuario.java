@@ -6,6 +6,7 @@ import EditorTextoInteractivo.EditorTexto;
 import BusquedaPalabrasYContactos.BuscadorPalabras;
 import BusquedaPalabrasYContactos.Contactos;
 import BusquedaPalabrasYContactos.DatosContactos;
+import VerificaciónYDiseño.DiseñoGrafico;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class InterfazUsuario extends JFrame {
     private BuscadorPalabras busquedaPalabras;
     private Contactos contactos;
     private JLabel mousePositionLabel;
+    private JButton drawButton;
 
     public InterfazUsuario() {
         setLayout(new BorderLayout());
@@ -35,8 +37,9 @@ public class InterfazUsuario extends JFrame {
         backButton = new JButton("Volver");
         openEditorButton = new JButton("Editor archivos");
         openComparatorButton = new JButton("Comparador");
-        verContactosButton = new JButton("Ver Contactos");
+        verContactosButton = new JButton("Gestión Contactos");
         buscarPalabrasButton = new JButton("Buscar Palabras");
+        drawButton = new JButton("Dibujar");
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(backButton);
@@ -44,6 +47,7 @@ public class InterfazUsuario extends JFrame {
         buttonPanel.add(openComparatorButton);
         buttonPanel.add(verContactosButton);
         buttonPanel.add(buscarPalabrasButton);
+        buttonPanel.add(drawButton);
 
         comparadorDeContenido = new ComparadorDeContenido();
         editorTexto = new EditorTexto(comparadorDeContenido);
@@ -65,13 +69,13 @@ public class InterfazUsuario extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         add(buttonPanel, BorderLayout.NORTH);
-        // Agregar solo el JScrollPane al BorderLayout.CENTER
         add(scrollPane, BorderLayout.CENTER);
 
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "EMPTY"));
         openEditorButton.addActionListener(e -> cardLayout.show(cardPanel, "EDITOR"));
         openComparatorButton.addActionListener(e -> cardLayout.show(cardPanel, "COMPARATOR"));
         verContactosButton.addActionListener(e -> mostrarDialogoContactos());
+
 
         buscarPalabrasButton.addActionListener(e -> {
             String palabra = JOptionPane.showInputDialog("Introduce la palabra a buscar:");
@@ -83,6 +87,7 @@ public class InterfazUsuario extends JFrame {
         // Seguimiento del Ratón
         mousePositionLabel = new JLabel();
         add(mousePositionLabel, BorderLayout.SOUTH);
+        drawButton.addActionListener(e -> new DiseñoGrafico());
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent e) {
                 mousePositionLabel.setText("Mouse Position: " + e.getX() + ", " + e.getY());

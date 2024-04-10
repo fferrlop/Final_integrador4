@@ -15,12 +15,9 @@ public class VentanaPrincipal extends JFrame {
         JScrollPane scrollPane = new JScrollPane(interfazUsuario);
         add(scrollPane, BorderLayout.CENTER);
 
-        add(new MultiplicidadVentanas(), BorderLayout.NORTH);
-        add(new SeguimientoRaton(), BorderLayout.SOUTH);
-        add(new BarraDesplazamiento(), BorderLayout.EAST);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }
